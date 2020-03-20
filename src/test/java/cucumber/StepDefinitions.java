@@ -1,5 +1,6 @@
 package cucumber;
 
+import apis.AuthenticationAPI;
 import com.saucelabs.framework.Browser;
 import com.saucelabs.framework.pages.PageObject;
 import com.saucelabs.saucebindings.SauceOptions;
@@ -8,6 +9,7 @@ import data.UserData;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.HomePage;
 import pages.LogInPage;
@@ -34,6 +36,7 @@ public class StepDefinitions {
         RemoteWebDriver driver = session.start();
         Browser browser = new Browser(driver);
         PageObject.setBrowser(browser);
+        RestAssured.baseURI = "https://address-book-example.herokuapp.com/";
     }
     @io.cucumber.java.After
     public void after()
@@ -59,9 +62,9 @@ public class StepDefinitions {
     }
     @Given("a user is registered")
     public void a_user_is_registered() {
-        //TODO struggling here
-//        AuthenticationAPI authenticationAPI = new AuthenticationAPI();
-//        testUser = authenticationAPI.createRandomUser();
+        //given().
+        AuthenticationAPI authenticationAPI = new AuthenticationAPI();
+        testUser = authenticationAPI.createRandomUser();
     }
 
     @Given("a user navigates to the sign in page")
