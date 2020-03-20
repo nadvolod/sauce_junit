@@ -10,11 +10,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.HomePage;
 import pages.LogInPage;
 import pages.SignUpPage;
 
+import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertTrue;
 
 public class StepDefinitions {
@@ -62,7 +64,9 @@ public class StepDefinitions {
     }
     @Given("a user is registered")
     public void a_user_is_registered() {
-        //given().
+        validUser = new UserData().getValidUser();
+        (given().contentType(ContentType.JSON).body(validUser).
+                when().post("/users", new Object[0])).then();
         AuthenticationAPI authenticationAPI = new AuthenticationAPI();
         testUser = authenticationAPI.createRandomUser();
     }
