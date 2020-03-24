@@ -1,6 +1,5 @@
 package cucumber;
 
-import apis.AuthenticationAPI;
 import com.saucelabs.framework.Browser;
 import com.saucelabs.framework.pages.PageObject;
 import com.saucelabs.saucebindings.SauceOptions;
@@ -23,8 +22,8 @@ public class StepDefinitions {
 
     public SauceSession session;
     private UserData testUser;
-    private LogInPage loginPage;
     private HomePage homePage;
+    private LogInPage loginPage;
 
     @io.cucumber.java.Before
     public void setup(Scenario scenario)
@@ -59,8 +58,8 @@ public class StepDefinitions {
     }
     @Given("a user is registered")
     public void a_user_is_registered() {
-        AuthenticationAPI authenticationAPI = new AuthenticationAPI();
-        testUser = authenticationAPI.createRandomUser();
+        //AuthenticationAPI authenticationAPI = new AuthenticationAPI();
+        //testUser = authenticationAPI.createRandomUser();
     }
 
     @Given("a user navigates to the sign in page")
