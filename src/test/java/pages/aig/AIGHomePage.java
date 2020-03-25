@@ -2,10 +2,6 @@ package pages.aig;
 
 import com.saucelabs.framework.pages.OnPage;
 
-@OnPage(url = "individual")
+@OnPage(path = "/individual")
 public class AIGHomePage extends BasePage {
-    public void visit()
-    {
-        browser.get(getBaseURL());
-    }
 }

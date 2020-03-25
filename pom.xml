@@ -103,10 +103,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
-                    <parallel>all</parallel>
-                    <threadCount>10</threadCount>
-                    <perCoreThreadCount>false</perCoreThreadCount>
-                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                    <parallel>methods</parallel>
+                    <threadCount>100</threadCount>
                 </configuration>
             </plugin>
             <plugin>

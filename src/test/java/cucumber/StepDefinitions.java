@@ -14,6 +14,7 @@ import pages.aig.AIGHomePage;
 import pages.HomePage;
 import pages.LogInPage;
 import pages.SignUpPage;
+import pages.aig.AIGInsurancePage;
 
 import static org.junit.Assert.assertTrue;
 
@@ -26,6 +27,7 @@ public class StepDefinitions {
     private HomePage homePage;
     private LogInPage loginPage;
     private AIGHomePage aigHomePage;
+    private AIGInsurancePage aigInsurancePage;
 
     @io.cucumber.java.Before
     public void setup(Scenario scenario)
@@ -94,4 +96,15 @@ public class StepDefinitions {
                 aigHomePage.isOnPage());
     }
 
+    @When("a user opens the AIG insurance page")
+    public void aUserOpensTheAIGInsurancePage() {
+        aigInsurancePage = new AIGInsurancePage();
+        aigInsurancePage.visit();
+    }
+
+    @Then("the user sees the insurance page render successfully")
+    public void theUserSeesTheInsurancePageRenderSuccessfully() {
+        assertTrue("We opened the Insurance page in the browser and expect it to render",
+                aigInsurancePage.isOnPage());
+    }
 }
