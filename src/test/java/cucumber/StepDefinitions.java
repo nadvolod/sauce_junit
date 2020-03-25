@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import pages.aig.AIGHomePage;
 import pages.HomePage;
 import pages.LogInPage;
 import pages.SignUpPage;
@@ -24,6 +25,7 @@ public class StepDefinitions {
     private UserData testUser;
     private HomePage homePage;
     private LogInPage loginPage;
+    private AIGHomePage aigHomePage;
 
     @io.cucumber.java.Before
     public void setup(Scenario scenario)
@@ -76,4 +78,20 @@ public class StepDefinitions {
     public void the_user_is_logged_in() {
         assertTrue(homePage.isLoggedIn());
     }
+    @Given("a user opens a browser")
+    public void a_user_opens_a_browser() {
+        //do nothing
+    }
+
+    @When("a user navigates to the AIG home page")
+    public void a_user_navigates_to_the_AIG_home_page() {
+        aigHomePage = new AIGHomePage();
+        aigHomePage.visit();
+    }
+    @Then("the user sees the page render successfully")
+    public void the_user_sees_the_page_render_successfully() {
+        assertTrue("We visited the AIG Home Page and expect it to render",
+                aigHomePage.isOnPage());
+    }
+
 }
