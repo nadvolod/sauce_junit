@@ -10,12 +10,17 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import pages.aig.AIGHomePage;
 import pages.HomePage;
 import pages.LogInPage;
 import pages.SignUpPage;
+import pages.aig.AIGBusinessPage;
+import pages.aig.AIGHomePage;
 import pages.aig.AIGInsurancePage;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class StepDefinitions {
@@ -23,19 +28,21 @@ public class StepDefinitions {
     private SignUpPage signUpPage;
 
     public SauceSession session;
-    private UserData testUser;
     private HomePage homePage;
     private LogInPage loginPage;
     private AIGHomePage aigHomePage;
     private AIGInsurancePage aigInsurancePage;
+    private RemoteWebDriver driver;
+    private AIGBusinessPage businessPage;
 
     @io.cucumber.java.Before
     public void setup(Scenario scenario)
     {
         SauceOptions options = new SauceOptions();
         options.setName(scenario.getName());
+        options.setCapturePerformance(true);
         session = new SauceSession(options);
-        RemoteWebDriver driver = session.start();
+        driver = session.start();
         Browser browser = new Browser(driver);
         PageObject.setBrowser(browser);
     }
@@ -60,21 +67,11 @@ public class StepDefinitions {
     public void the_user_is_successfully_registered() {
         assertTrue(new HomePage().isLoggedIn(validUser));
     }
-    @Given("a user is registered")
-    public void a_user_is_registered() {
-        //AuthenticationAPI authenticationAPI = new AuthenticationAPI();
-        //testUser = authenticationAPI.createRandomUser();
-    }
 
     @Given("a user navigates to the sign in page")
     public void a_user_navigates_to_the_sign_in_page() {
         homePage = new HomePage();
         homePage.visit();
-    }
-    @When("the user provides valid credentials")
-    public void the_user_provides_valid_credentials() {
-        loginPage = new LogInPage();
-        loginPage.logIn(testUser);
     }
     @Then("the user is logged in")
     public void the_user_is_logged_in() {
@@ -106,5 +103,24 @@ public class StepDefinitions {
     public void theUserSeesTheInsurancePageRenderSuccessfully() {
         assertTrue("We opened the Insurance page in the browser and expect it to render",
                 aigInsurancePage.isOnPage());
+    }
+
+    @Then("the page loads in under {int} seconds")
+    public void thePageLoadsInUnderSeconds(int arg0) {
+        Map<String, Object> logType = new HashMap();
+        logType.put("type","sauce:performance");
+        Map<String, Object> performance = (Map<String, Object>) driver.executeScript("sauce:performance");
+        assertEquals("5000", performance.get("speedIndex").toString());
+    }
+
+    @Then("the user sees the Business page render sucessfully")
+    public void theUserSeesTheBusinessPageRenderSuccessfully() {
+        assertTrue(businessPage.isOnPage());
+    }
+
+    @When("a user navigates to the AIG business page")
+    public void aUserNavigatesToTheAIGBusinessPage() {
+        businessPage = new AIGBusinessPage();
+        businessPage.visit();
     }
 }
