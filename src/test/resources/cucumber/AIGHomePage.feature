@@ -8,12 +8,7 @@ Feature: AIG Home page works as expected
     When a user navigates to the AIG home page
     Then the user sees the page render successfully
 
-  Scenario: Home page is responsive
+  Scenario: Home page is fast
     Given a user opens a browser
     When a user navigates to the AIG home page
-    Then the page loads in under 4 seconds
-
-  Scenario: AIG Business page renders
-    Given a user opens a browser
-    When a user navigates to the AIG business page
-    Then the user sees the Business page render sucessfully
+    Then the page loads within established baseline

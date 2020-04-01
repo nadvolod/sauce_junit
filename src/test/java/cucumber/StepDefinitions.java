@@ -34,13 +34,16 @@ public class StepDefinitions {
     private AIGInsurancePage aigInsurancePage;
     private RemoteWebDriver driver;
     private AIGBusinessPage businessPage;
+    private Scenario scenarioInfo;
 
     @io.cucumber.java.Before
     public void setup(Scenario scenario)
     {
+        scenarioInfo = scenario;
         SauceOptions options = new SauceOptions();
         options.setName(scenario.getName());
         options.setCapturePerformance(true);
+        options.setExtendedDebugging(true);
         session = new SauceSession(options);
         driver = session.start();
         Browser browser = new Browser(driver);
@@ -105,12 +108,15 @@ public class StepDefinitions {
                 aigInsurancePage.isOnPage());
     }
 
-    @Then("the page loads in under {int} seconds")
-    public void thePageLoadsInUnderSeconds(int arg0) {
-        Map<String, Object> logType = new HashMap();
-        logType.put("type","sauce:performance");
-        Map<String, Object> performance = (Map<String, Object>) driver.executeScript("sauce:performance");
-        assertEquals("5000", performance.get("speedIndex").toString());
+    @Then("the page loads within established baseline")
+    public void thePageLoadsInUnderSeconds() {
+        Map<String, Object> desiredPerformanceMetrics = new HashMap();
+        String metrics[] = { "speedIndex" };
+        desiredPerformanceMetrics.put("metrics", metrics);
+        desiredPerformanceMetrics.put("name", scenarioInfo.getName());
+        Map<String, Object> performance =
+                (Map<String, Object>) driver.executeScript("sauce:performance", desiredPerformanceMetrics);
+        assertEquals("pass", performance.get("result"));
     }
 
     @Then("the user sees the Business page render sucessfully")
