@@ -5,7 +5,7 @@ import com.saucelabs.framework.pages.OnPage;
 import data.UserData;
 import org.openqa.selenium.By;
 
-@OnPage(path="/sign_up")
+@OnPage(urlPath="/sign_up")
 public class SignUpPage extends BasePage {
 
     private Element email = browser.element(By.id("user_email"));

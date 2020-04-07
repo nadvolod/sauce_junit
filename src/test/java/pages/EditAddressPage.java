@@ -14,7 +14,7 @@ public class EditAddressPage extends BasePage {
     private Element submit = browser.element(By.name("commit"));
 
     public void visit(String id) {
-        browser.get("https://address-book-example.herokuapp.com/addresses/" + id + "/edit");
+        browser.goTo("https://address-book-example.herokuapp.com/addresses/" + id + "/edit");
     }
 
 }

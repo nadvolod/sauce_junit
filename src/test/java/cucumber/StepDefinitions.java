@@ -11,7 +11,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.HomePage;
-import pages.LogInPage;
 import pages.SignUpPage;
 import pages.aig.AIGBusinessPage;
 import pages.aig.AIGHomePage;
@@ -28,12 +27,11 @@ public class StepDefinitions {
     private SignUpPage signUpPage;
 
     public SauceSession session;
-    private HomePage homePage;
-    private LogInPage loginPage;
+    private HomePage addressAppHomePage;
     private AIGHomePage aigHomePage;
     private AIGInsurancePage aigInsurancePage;
     private RemoteWebDriver driver;
-    private AIGBusinessPage businessPage;
+    private AIGBusinessPage aigBusinessPage;
     private Scenario scenarioInfo;
 
     @io.cucumber.java.Before
@@ -73,12 +71,12 @@ public class StepDefinitions {
 
     @Given("a user navigates to the sign in page")
     public void a_user_navigates_to_the_sign_in_page() {
-        homePage = new HomePage();
-        homePage.visit();
+        addressAppHomePage = new HomePage();
+        addressAppHomePage.visit();
     }
     @Then("the user is logged in")
     public void the_user_is_logged_in() {
-        assertTrue(homePage.isLoggedIn());
+        assertTrue(addressAppHomePage.isLoggedIn());
     }
     @Given("a user opens a browser")
     public void a_user_opens_a_browser() {
@@ -121,12 +119,22 @@ public class StepDefinitions {
 
     @Then("the user sees the Business page render sucessfully")
     public void theUserSeesTheBusinessPageRenderSuccessfully() {
-        assertTrue(businessPage.isOnPage());
+        assertTrue(aigBusinessPage.isOnPage());
     }
 
     @When("a user navigates to the AIG business page")
     public void aUserNavigatesToTheAIGBusinessPage() {
-        businessPage = new AIGBusinessPage();
-        businessPage.visit();
+        aigBusinessPage = new AIGBusinessPage();
+        aigBusinessPage.visit();
+    }
+
+    @When("a user searches for {string}")
+    public void aUserSearchesFor(String searchString) {
+        aigHomePage.search(searchString);
+    }
+
+    @Then("some results come back")
+    public void someResultsComeBack() {
+        assertTrue(aigHomePage.getSearchPage().hasSearchResults());
     }
 }

@@ -1,6 +1,7 @@
 package test.java.tests;
 
 import com.saucelabs.framework.Browser;
+import com.saucelabs.framework.junit.SauceTestWatcher;
 import com.saucelabs.framework.pages.PageObject;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
@@ -27,7 +28,7 @@ public class BaseTest {
         SauceOptions options = new SauceOptions();
         options.setName(name.getMethodName());
         session = new SauceSession(options);
-        testWatcher.setSession(session);
+        testWatcher.setSauceSession(session);
         RemoteWebDriver driver = session.start();
         Browser browser = new Browser(driver);
         PageObject.setBrowser(browser);

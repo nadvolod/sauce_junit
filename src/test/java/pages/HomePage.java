@@ -5,7 +5,7 @@ import com.saucelabs.framework.pages.OnPage;
 import org.openqa.selenium.By;
 import data.UserData;
 
-@OnPage(path="/")
+@OnPage(urlPath="/")
 public class HomePage extends BasePage {
     private Element logOut = browser.element(By.cssSelector("[data-test=sign-out]"));
     private Element currentUser = browser.element(By.cssSelector("[data-test=current-user]"));

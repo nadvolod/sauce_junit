@@ -3,9 +3,8 @@ package pages;
 import com.saucelabs.framework.elements.Element;
 import com.saucelabs.framework.pages.OnPage;
 import org.openqa.selenium.By;
-import data.AddressData;
 
-@OnPage(path="/addresses")
+@OnPage(urlPath="/addresses")
 public class ListAddressPage extends BasePage {
 
     private Element notice = browser.element(By.cssSelector("[data-test=notice]"));
