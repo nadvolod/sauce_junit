@@ -1,4 +1,4 @@
-package tests.data;
+package data;
 
 import com.saucelabs.framework.data.DataObject;
 import lombok.Getter;
@@ -9,4 +9,8 @@ import lombok.Setter;
 public class UserData extends DataObject {
     private String email = faker.internet().emailAddress();
     private String password = faker.internet().password();
+
+    public UserData getValidUser() {
+        return this;
+    }
 }
