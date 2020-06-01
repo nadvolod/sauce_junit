@@ -1,9 +1,9 @@
-package pages;
+package pages.address;
 
-import com.saucelabs.framework.elements.Element;
-import com.saucelabs.framework.pages.OnPage;
-import org.openqa.selenium.By;
+import com.saucelabs.salsaverde.elements.Element;
+import com.saucelabs.salsaverde.pages.OnPage;
 import data.UserData;
+import org.openqa.selenium.By;
 
 @OnPage(urlPath="/")
 public class HomePage extends BasePage {

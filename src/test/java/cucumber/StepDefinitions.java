@@ -1,7 +1,7 @@
 package cucumber;
 
-import com.saucelabs.framework.Browser;
-import com.saucelabs.framework.pages.PageObject;
+import com.saucelabs.salsaverde.Browser;
+import com.saucelabs.salsaverde.pages.PageObject;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import data.UserData;
@@ -10,8 +10,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import pages.HomePage;
-import pages.SignUpPage;
+import pages.address.HomePage;
+import pages.address.SignUpPage;
 import pages.aig.AIGBusinessPage;
 import pages.aig.AIGHomePage;
 import pages.aig.AIGInsurancePage;

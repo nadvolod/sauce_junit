@@ -1,7 +1,7 @@
 package pages.aig;
 
-import com.saucelabs.framework.elements.Element;
-import com.saucelabs.framework.pages.OnPage;
+import com.saucelabs.salsaverde.elements.Element;
+import com.saucelabs.salsaverde.pages.OnPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -14,7 +14,7 @@ public class AIGHomePage extends BasePage {
         searchIcon.hover();
         searchIcon.click();
         searchBar.setText(searchString);
-        searchBar.setText(Keys.ENTER);
+        searchBar.setText(Keys.ENTER.toString());
     }
 
     public SearchPage getSearchPage() {

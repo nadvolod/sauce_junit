@@ -1,6 +1,6 @@
 package pages.aig;
 
-import com.saucelabs.framework.pages.PageObject;
+import com.saucelabs.salsaverde.pages.PageObject;
 import lombok.Getter;
 public class BasePage extends PageObject {
     @Getter

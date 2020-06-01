@@ -1,4 +1,4 @@
-package pages;
+package pages.address;
 
 import data.UserData;
 

@@ -1,6 +1,6 @@
 package data;
 
-import com.saucelabs.framework.data.DataObject;
+import com.saucelabs.salsaverde.data.DataObject;
 import lombok.Getter;
 import lombok.Setter;
 

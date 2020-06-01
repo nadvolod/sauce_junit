@@ -1,6 +1,6 @@
-package pages;
+package pages.address;
 
-import com.saucelabs.framework.elements.Element;
+import com.saucelabs.salsaverde.elements.Element;
 import org.openqa.selenium.By;
 
 public class EditAddressPage extends BasePage {
